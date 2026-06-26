@@ -67,7 +67,7 @@ docker run -d --name mtranserver -p 8989:8989 -v ./models:/app/models mtranserve
 或者用 Docker Compose（使用本地构建的镜像）：
 
 ```yaml
-# compose.yml
+# docker-compose.yml
 services:
   mtranserver:
     build: .
