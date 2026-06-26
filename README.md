@@ -6,39 +6,18 @@
 
 ---
 
-## 快速开始
-
-```bash
-# 直接运行（自动下载模型）
-npx mtranserver@latest
-
-# 或全局安装
-npm install -g mtranserver@latest
-mtranserver
-```
-
-首次翻译会自动下载模型，之后享受毫秒级响应。
-
-访问：
-- Web UI：`http://localhost:8989/ui/`
-- API 文档：`http://localhost:8989/docs/`
-
----
-
-## 开发环境
-
-### 环境要求
+## 环境要求
 
 | 依赖 | 版本 |
 |------|------|
 | [Bun](https://bun.sh) | >= 1.3 |
 | Node.js（备选） | >= 18 |
 
-### 创建开发环境
+## 快速开始
 
 ```bash
 # 克隆仓库
-git clone https://github.com/shiqianwei0508/MTranServer.git  # 替换为你的仓库地址
+git clone <your-repo-url>
 cd MTranServer
 
 # 安装依赖
@@ -49,54 +28,55 @@ cd ui && bun install && cd ..
 bun tsoa spec-and-routes
 bun run scripts/gen-swagger-assets.ts
 
-# 构建前端（开发时需要）
+# 构建前端
 cd ui && bun run build && cd ..
 bun run scripts/gen-ui-assets.ts
-```
 
-### 启动开发服务器
-
-```bash
-# 开发模式（热重载 TypeScript）
+# 启动（首次翻译自动下载模型）
 bun run src/main.ts --log-level debug --port 8089
-
-# 离线模式（不联网，提前下载模型）
-bun run src/main.ts --log-level debug --port 8089 --offline
 ```
+
+访问：
+- Web UI：`http://localhost:8089/ui/`
+- API 文档：`http://localhost:8089/docs/`
 
 ### 下载翻译模型
 
 ```bash
-# 在线下载指定语言对
+# 下载指定语言对
 bun run src/main.ts --download en-zh zh-en
 
 # 查看可用语言对
 bun run src/main.ts --languages
 ```
 
-模型存放于 `./models/` 目录。离线部署方法详见 [docs/DESIGN.md](docs/DESIGN.md#14-模型下载与离线部署)。
+模型存放在 `./models/`。离线部署详见 [docs/DESIGN.md](docs/DESIGN.md#14-模型下载与离线部署)。
 
 ---
 
 ## Docker 部署
 
+```bash
+# 构建镜像
+docker build -t mtranserver .
+
+# 启动
+docker run -d --name mtranserver -p 8989:8989 -v ./models:/app/models mtranserver
+```
+
+或者用 Docker Compose（使用本地构建的镜像）：
+
 ```yaml
 # compose.yml
 services:
   mtranserver:
-    image: xxnuo/mtranserver:latest
+    build: .
     container_name: mtranserver
     restart: unless-stopped
     ports:
       - "8989:8989"
     volumes:
       - ./models:/app/models
-    environment:
-      - MT_OFFLINE=false
-```
-
-```bash
-docker compose up -d
 ```
 
 ---
@@ -107,8 +87,10 @@ docker compose up -d
 |------|------|
 | [DESIGN.md](docs/DESIGN.md) | 项目设计文档（架构、数据流、模块详解） |
 | [OpenAPI](http://localhost:8989/docs/) | Swagger 交互式 API 文档（启动后访问） |
-| [API_en.md](docs/API_en.md) | 英文 API 文档 |
-| [API_ja.md](docs/API_ja.md) | 日文 API 文档 |
+| [API_en.md](docs/API_en.md) | English API docs |
+| [API_ja.md](docs/API_ja.md) | 日本語 API ドキュメント |
+| [API_de.md](docs/API_de.md) | Deutsche API-Dokumentation |
+| [API_fr.md](docs/API_fr.md) | Documentation API française |
 
 ### 兼容接口
 

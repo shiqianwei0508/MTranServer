@@ -1,6 +1,6 @@
 services:
   mtranserver:
-    image: xxnuo/mtranserver:latest
+    build: .
     container_name: mtranserver
     restart: unless-stopped
     ports:
