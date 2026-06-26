@@ -38,7 +38,7 @@ mtranserver
 
 ```bash
 # 克隆仓库
-git clone https://github.com/shiqianwei0508/MTranServer.git
+git clone https://github.com/shiqianwei0508/MTranServer.git  # 替换为你的仓库地址
 cd MTranServer
 
 # 安装依赖
@@ -154,7 +154,3 @@ Options:
 ## License
 
 Apache-2.0
-
-## Thanks
-
-[Bergamot Project](https://browser.mt/) · [Mozilla Firefox Translations](https://github.com/mozilla/firefox-translations-models)
