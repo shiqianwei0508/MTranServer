@@ -1,0 +1,63 @@
+{
+  "name": "mtranserver",
+  "version": "4.0.33",
+  "type": "module",
+  "description": "Translation server",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "bin": {
+    "mtranserver": "./dist/main.js"
+  },
+  "files": [
+    "dist",
+    "assets"
+  ],
+  "scripts": {
+    "test": "bun test",
+    "typecheck": "tsc --noEmit",
+    "lint": "echo 'No linter configured'",
+    "dev": "bun src/main.ts --log-level debug --port 8990 --model-dir ~/.config/mtran/models",
+    "dev2": "bun src/main.ts --log-level debug --port 8989 --model-dir ~/.config/mtran/models",
+    "bump": "bun scripts/bump.ts",
+    "prepublishOnly": "bun scripts/build.ts --lib",
+    "push": "npm publish --registry=https://registry.npmjs.org",
+    "build": "bun scripts/build.ts --single",
+    "build:all": "bun scripts/build.ts --all",
+    "build:docker": "docker build -t xxnuo/mtranserver:latest .",
+    "build:node": "bun scripts/build.ts --node",
+    "build:dev": "bun scripts/build.ts --dev",
+    "build:lib": "bun scripts/build.ts --lib"
+  },
+  "keywords": [
+    "translation",
+    "bergamot",
+    "wasm",
+    "machine-translation",
+    "translation-server"
+  ],
+  "author": {
+    "name": "xxnuo",
+    "email": "w3xilqryb@mozmail.com"
+  },
+  "license": "Apache-2.0",
+  "devDependencies": {
+    "@tsoa/runtime": "^7.0.0-alpha.0",
+    "@types/bun": "^1.3.5",
+    "@types/express": "^5.0.6",
+    "@types/node": "^25.0.3",
+    "@types/swagger-ui-express": "^4.1.8",
+    "tsoa": "^7.0.0-alpha.0",
+    "tsx": "^4.21.0",
+    "typescript": "^5.9.3"
+  },
+  "dependencies": {
+    "express": "^5.2.1",
+    "express-validator": "^7.3.1",
+    "fzstd": "^0.1.1",
+    "lru-cache": "^11.2.4",
+    "swagger-ui-express": "^5.0.1"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
