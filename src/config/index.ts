@@ -112,11 +112,10 @@ export function getConfig(): Config {
   const homeDir = path.join(os.homedir(), '.config', 'mtran');
   const fileConfig = readConfigFile(homeDir);
 
-  const configDir = getString('--config-dir', 'MT_CONFIG_DIR', fileConfig.configDir || path.join(homeDir, 'server'));
-  const localModelsDir = path.join(process.cwd(), 'models');
-  const defaultModelDir = fs.existsSync(localModelsDir) ? localModelsDir : path.join(homeDir, 'models');
-  const modelDir = getString('--model-dir', 'MT_MODEL_DIR', fileConfig.modelDir || defaultModelDir);
-  const logDir = getString('--log-dir', 'MT_LOG_DIR', fileConfig.logDir || path.join(homeDir, 'logs'));
+  const rootDir = process.cwd();
+  const configDir = getString('--config-dir', 'MT_CONFIG_DIR', fileConfig.configDir || path.join(rootDir, 'config'));
+  const modelDir = getString('--model-dir', 'MT_MODEL_DIR', fileConfig.modelDir || path.join(rootDir, 'models'));
+  const logDir = getString('--log-dir', 'MT_LOG_DIR', fileConfig.logDir || path.join(rootDir, 'logs'));
 
   globalConfig = {
     homeDir,

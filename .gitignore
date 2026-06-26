@@ -9,6 +9,8 @@
 *node_modules*
 /packages
 /models
+/config
+/logs
 /.bin
 /dist
 /.claude
