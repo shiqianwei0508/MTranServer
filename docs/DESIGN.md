@@ -1,6 +1,6 @@
 # MTranServer 项目设计文档
 
-> 版本：4.0.34 | 许可证：Apache-2.0 | 运行时：Bun / Node.js
+> 版本：4.0.35 | 许可证：Apache-2.0 | 运行时：Bun / Node.js
 
 ---
 
